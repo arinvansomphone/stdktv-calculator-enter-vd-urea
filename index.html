@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>stdKt/V Calculator, Enter Vd Urea</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Arin Vansomphone" />
+
+  <!-- styles & fonts -->
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@200..800&family=Inter:wght@100..900&display=swap"
+    rel="stylesheet" />
+
+  <!-- Chart.js first -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1"></script>
+
+  <!-- Your ES-modules (graph.js now loaded dynamically to avoid circular dependency) -->
+  <script type="module" src="controller.js" defer></script>
+</head>
+
+<body>
+  <header>
+    <div class="title"><a href="index.html">stdKt/V CALCULATOR</a></div>
+    <nav><a href="about.html">About</a></nav>
+  </header>
+
+  <section class="hero">
+    <h1>stdKt/V Calculator, Enter Vd Urea</h1>
+    <p class="grey">Questions or concerns with the interface? Contact <a
+        href="mailto:twmeyer@stanford.edu">twmeyer@stanford.edu</a>.</p>
+  </section>
+
+  <div class="box-container">
+    <!-- ========= PARAMETERS + SUBMIT ======================================= -->
+    <form id="dialysisForm" class="box parameters-box">
+      <h2>Parameters for Current 3x per Week Dialysis</h2>
+
+      <div class="input-question">
+        <label for="ureaDistribution">Enter your value for urea volume of distribution:<sup style="color: red;">*</sup></label><br>
+        <div style="display: flex; align-items: center; flex-wrap: wrap;"><input type="number" id="ureaDistribution" class="numeric-input" step="any" required><span style="margin-left: 5px;"> L</span></div>
+      </div>
+
+      <div class="input-question"><label>End treatment weight:<sup style="color: red;">*</sup></label><br>
+        <div style="display: flex; align-items: center; flex-wrap: wrap;"><input type="number" id="weight"
+            class="numeric-input" required><span style="margin-left: 5px;"> kg</span><span id="weight-warning"
+            style="color: red; margin-left: 10px; display: none;">Value outside normal range, weight under 30 kg?</span>
+        </div>
+      </div>
+
+      <div id="gender-height-age">
+        <div class="input-question">
+          <label>Gender at birth:</label><br>
+          <div class="radio-group">
+            <label><input type="radio" name="gender" value="male" checked> Male</label>
+            <label><input type="radio" name="gender" value="female"> Female</label>
+          </div>
+        </div>
+
+        <div class="input-question">
+          <label for="height">Height:</label><br>
+          <div style="display: flex; align-items: center; flex-wrap: wrap;"><input type="number" id="height"
+              class="numeric-input" min="100"><span style="margin-left: 5px;"> cm</span><span
+              id="height-warning" style="color: red; margin-left: 10px; display: none;">Value outside normal range,
+              under 100 cm?</span>
+          </div>
+        </div>
+
+        <div class="input-question">
+          <label for="age">Age:</label><br>
+          <div style="display: flex; align-items: center; flex-wrap: wrap;"><input type="number" id="age"
+              class="numeric-input"><span style="margin-left: 5px;"> yrs</span><span id="age-warning"
+              style="color: red; margin-left: 10px; display: none;">Value outside normal range, age under 18?</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="volume-display">
+        <div class="input-question">
+          <label>Demographic estimate of urea volume of distribution:</label><br>
+          <div style="display: flex; align-items: center; flex-wrap: wrap;"><input readonly id="ureaDisplay" class="numeric-input"><span style="margin-left: 5px;"> L</span></div>
+        </div>
+      </div>
+
+      <div class="input-question"><label>Dialysis time:<sup style="color: red;">*</sup></label><br>
+        <div style="display: flex; align-items: center; flex-wrap: wrap;"><input type="number" id="time" class="numeric-input" required><span style="margin-left: 5px;"> min</span></div>
+      </div>
+      <div class="input-question"><label>Weekly UF:<sup style="color: red;">*</sup></label><br>
+        <div style="display: flex; align-items: center; flex-wrap: wrap;"><input type="number" id="weeklyuf" class="numeric-input" required><span style="margin-left: 5px;"> L/wk</span></div>
+      </div>
+      <div class="input-question"><label>Kru:<sup style="color: red;">*</sup></label><br>
+        <div style="display: flex; align-items: center; flex-wrap: wrap;"><input type="number" id="kru" class="numeric-input" step="any" required><span style="margin-left: 5px;"> mL/min</span>
+        </div>
+      </div>
+      <div class="input-question"><label>Current spKt/V:<sup style="color: red;">*</sup></label><br>
+        <div><input type="number" id="spKtV_current" class="numeric-input" step="any" min="0" required>
+        </div>
+      </div>
+      <div class="input-question"><label>Target stdKt/V, default is 2.3:<sup style="color: red;">*</sup></label><br>
+        <div><input type="number" id="stdKtV_target" class="numeric-input" value="2.3" step="any" min="0" required>
+        </div>
+      </div>
+      <div class="input-question">
+        <label>Pre-treatment PUN when spKt/V was obtained:<sup style="color: red;">*</sup></label><br>
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <div class="radio-group">
+            <label><input type="radio" name="pun-unit" value="M" checked> M</label>
+            <label><input type="radio" name="pun-unit" value="W"> W</label>
+            <label><input type="radio" name="pun-unit" value="F"> F</label>
+          </div>
+          <input type="number" id="G" class="numeric-input" step="any" min="0" required><span> mg/dL</span>
+        </div>
+      </div>
+
+      <!-- SUBMIT -->
+      <button id="calculate" type="submit">Calculate&nbsp;&amp;&nbsp;Plot</button>
+    </form>
+
+    <div class="right-column-wrapper">
+      <!-- ========= RESULTS / CHART =========================================== -->
+      <div class="box output-box">
+        <h2 class="results-title">Results</h2>
+
+        <div class="graph"><canvas id="myLineChart"></canvas></div>
+
+        <div class="output-column">
+          <div style="text-align:center;margin-bottom:1rem;width:100%;">
+            <p style="margin:0;text-align:center;"><b>Estimated dialytic clearance (Kd):</b> <span id="kdOutput"></span></p>
+          </div>
+
+          <div class="custom-legend-container">
+            <div id="legendSubtitle" style="text-align:center;font-weight:bold;margin-bottom:0.5rem;">Check/uncheck to
+              show/hide lines</div>
+            <div id="chartLegend"></div>
+          </div>
+        </div>
+
+        <div class="output-column">
+          <h3>New 3x per Week Dialysis:</h3>
+          <p><b>Time required:</b> <span id="timeOutputThrice"></span></p>
+          <p><b>Ultrafiltration rate:</b> <span id="UF_RateThrice"></span></p>
+          <p><b>New spKt/V:</b> <span id="newspKtVThrice"></span></p>
+          <p><b>New stdKt/V:</b> <span id="newstdKtVThrice"></span></p>
+          <p id="UF_WarningThrice"></p>
+        </div>
+
+        <div class="output-column">
+          <h3>2x per Week Dialysis:</h3>
+          <p><b>Time required:</b> <span id="timeOutputTwice"></span></p>
+          <p><b>Ultrafiltration rate:</b> <span id="UF_RateTwice"></span></p>
+          <p><b>New spKt/V:</b> <span id="newspKtVTwice"></span></p>
+          <p><b>New stdKt/V:</b> <span id="newstdKtVTwice"></span></p>
+          <p id="UF_WarningTwice"></p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>Version 2.0</p>
+  </footer>
+</body>
+
+</html>

@@ -1,0 +1,370 @@
+/* =====================  ROOT SCALE & THEME  ===================== */
+:root {
+  /* spacing */
+  --space-0: 0;
+  --space-1: 0.25rem;
+  /* 4 px */
+  --space-2: 0.5rem;
+  /* 8 px */
+  --space-3: 1rem;
+  /* 16 px */
+  --space-4: 1.5rem;
+  /* 24 px */
+  --space-5: 2rem;
+  /* 32 px */
+
+  /* colors */
+  --clr-bg: #ffffff;
+  --clr-text: #212529;
+  --clr-grey: #606060;
+  --clr-border: #dddddd;
+  --clr-primary: #2196f3;
+  --clr-primary-10: #e3f2fd;
+  --clr-shadow: rgba(0, 0, 0, 0.06);
+
+  /* typography */
+  --ff-base: "Inter", sans-serif;
+  --fs-body: 1rem;
+  --lh-body: 1.6;
+
+  /* misc */
+  --radius: 8px;
+  --transition: 150ms ease-in-out;
+}
+
+/* =====================  GLOBAL RESET  =========================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: var(--space-0);
+  font: var(--fs-body)/var(--lh-body) var(--ff-base);
+  background: var(--clr-bg);
+  color: var(--clr-text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =====================  TYPOGRAPHY  ============================= */
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: var(--space-0);
+  font-weight: 600;
+}
+
+.grey {
+  color: var(--clr-grey);
+}
+
+/* =====================  LAYOUT SECTIONS  ======================== */
+header,
+footer {
+  width: 100%;
+  padding: var(--space-4) var(--space-5);
+  border: 1px solid var(--clr-border);
+  background: var(--clr-bg);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+header a,
+nav a {
+  color: inherit;
+  text-decoration: none;
+}
+
+nav a {
+  margin-left: var(--space-3);
+}
+
+nav a:hover,
+nav a:focus-visible {
+  text-decoration: underline;
+}
+
+.hero {
+  padding: var(--space-4) var(--space-5);
+}
+
+/* -----------------  Responsive content wrapper  ----------------- */
+.box-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  padding: var(--space-0) var(--space-5) var(--space-5);
+  align-items: flex-start;
+}
+
+/* =====================  CARD-LIKE BOXES  ======================== */
+.box {
+  flex: 1 1 320px;
+  /* grow, shrink, basis */
+  background: var(--clr-bg);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+  box-shadow: 0 2px 6px var(--clr-shadow);
+}
+
+/* Right column wrapper for Results + Calculate stdKt/V */
+.right-column-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  flex: 1 1 600px;
+}
+
+/* parameter vs. output widths on ≥900 px screens */
+@media (min-width: 56.25rem) {
+
+  /* 900 px */
+  .parameters-box {
+    max-width: 400px;
+  }
+}
+
+/* =====================  OUTPUT GRID  ============================ */
+.output-box {
+  display: grid;
+  gap: var(--space-1);
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* =====================  FORMS & INPUTS  ========================= */
+.input-question {
+  margin-bottom: var(--space-3);
+}
+
+.input-question label {
+  margin-right: var(--space-2);
+}
+
+.radio-group {
+  margin-top: var(--space-1);
+  display: inline-flex;
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.radio-group label {
+  position: relative;
+  padding: var(--space-1) var(--space-3);
+  background: var(--clr-bg);
+  border-right: 1px solid var(--clr-border);
+  cursor: pointer;
+  transition: all var(--transition);
+  margin: 0;
+  user-select: none;
+  font-size: 0.9rem;
+}
+
+.radio-group label:last-child {
+  border-right: none;
+}
+
+.radio-group label:hover {
+  background: var(--clr-primary-10);
+}
+
+.radio-group input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.radio-group input[type="radio"]:checked+label,
+.radio-group label:has(input[type="radio"]:checked) {
+  background: var(--clr-primary);
+  color: white;
+  font-weight: 600;
+}
+
+.numeric-input,
+button[type="submit"] {
+  font-family: var(--ff-base);
+  font-size: 0.9rem;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius);
+  border: 1px solid var(--clr-border);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.numeric-input {
+  width: 100px;
+}
+
+.numeric-input:focus-visible {
+  outline: none;
+  border-color: var(--clr-primary);
+  box-shadow: 0 0 0 3px var(--clr-primary-10);
+}
+
+/* =====================  BUTTONS  ================================ */
+button[type="submit"] {
+  display: inline-block;
+  min-width: 200px;
+  margin-top: var(--space-4);
+  cursor: pointer;
+  background: var(--clr-primary);
+  color: #fff;
+  border: none;
+  font-weight: 600;
+}
+
+button[type="submit"]:hover,
+button[type="submit"]:focus-visible {
+  background: #1b82d4;
+}
+
+button[type="submit"]:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* text-link "buttons" that shouldn't look like links */
+.text-button {
+  background: transparent;
+  border: none;
+  padding: var(--space-0);
+  margin: var(--space-0);
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* =====================  UTILITY  ================================ */
+a {
+  color: inherit;
+}
+
+a:hover,
+a:focus-visible {
+  color: var(--clr-primary);
+}
+
+footer {
+  font-size: 0.875rem;
+  text-align: center;
+  margin-top: auto;
+}
+
+/* === Make the chart fill the whole results box ================================= */
+.graph {
+  grid-column: 1 / -1;
+  /* stretch across all columns in .output-box */
+  width: 100%;
+  aspect-ratio: 16/9;
+  background-color: #ffffff;
+}
+
+.graph canvas {
+  width: 100% !important;
+  /* let Chart.js scale responsively */
+  height: auto !important;
+  display: block;
+  margin: 0;
+  background-color: #ffffff;
+}
+
+/* tighten spacing around the chart & results columns */
+.results-title {
+  margin: 0 0 var(--space-2);
+}
+
+/* ↓ space below "Results" */
+.graph {
+  margin-block: 0;
+}
+
+/* reduced row spacing (half of --space-3)      */
+.output-column {
+  align-items: flex-start;
+}
+
+/* left-align internally  */
+
+/* shrink gaps in the two output columns */
+.output-column h3 {
+  margin: 0 0 var(--space-1);
+}
+
+.output-column p {
+  margin: var(--space-1) 0;
+}
+
+/* keep the two columns left-aligned & flush with each other */
+.output-column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* First column (Kd + legend) should be centered */
+.output-column:first-of-type {
+  align-items: center;
+}
+
+/* ensure canvas itself has no extra margin */
+.graph canvas {
+  display: block;
+  margin: 0;
+}
+
+/* three equal columns that wrap on narrow screens */
+#chartLegend {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+
+#chartLegend ul {
+  margin: 0;
+  padding: 0;
+  list-style: none
+}
+
+#chartLegend li {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+#chartLegend li span {
+  width: 18px;
+  height: 12px;
+  display: inline-block;
+  margin-right: 6px;
+  border: 1px solid currentColor;
+}
+
+/* Responsive: stack columns on smaller screens */
+@media (max-width: 768px) {
+  .output-box {
+    grid-template-columns: 1fr;
+  }
+}
