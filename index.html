@@ -40,13 +40,13 @@
       <h2>Parameters for Current 3x per Week Dialysis</h2>
 
       <div class="input-question">
-        <label for="ureaDistribution">Enter your value for urea volume of distribution:<sup style="color: red;">*</sup></label><br>
+        <label for="ureaDistribution">Enter your value for urea volume of distribution:</label><br>
         <div style="display: flex; align-items: center; flex-wrap: wrap;"><input type="number" id="ureaDistribution" class="numeric-input" step="any" required><span style="margin-left: 5px;"> L</span></div>
       </div>
 
-      <div class="input-question"><label>End treatment weight:<sup style="color: red;">*</sup></label><br>
+      <div class="input-question"><label>End treatment weight:</label><br>
         <div style="display: flex; align-items: center; flex-wrap: wrap;"><input type="number" id="weight"
-            class="numeric-input" required><span style="margin-left: 5px;"> kg</span><span id="weight-warning"
+            class="numeric-input" step="any" required><span style="margin-left: 5px;"> kg</span><span id="weight-warning"
             style="color: red; margin-left: 10px; display: none;">Value outside normal range, weight under 30 kg?</span>
         </div>
       </div>
@@ -63,7 +63,7 @@
         <div class="input-question">
           <label for="height">Height:</label><br>
           <div style="display: flex; align-items: center; flex-wrap: wrap;"><input type="number" id="height"
-              class="numeric-input" min="100"><span style="margin-left: 5px;"> cm</span><span
+              class="numeric-input" step="any" min="100"><span style="margin-left: 5px;"> cm</span><span
               id="height-warning" style="color: red; margin-left: 10px; display: none;">Value outside normal range,
               under 100 cm?</span>
           </div>
@@ -72,7 +72,7 @@
         <div class="input-question">
           <label for="age">Age:</label><br>
           <div style="display: flex; align-items: center; flex-wrap: wrap;"><input type="number" id="age"
-              class="numeric-input"><span style="margin-left: 5px;"> yrs</span><span id="age-warning"
+              class="numeric-input" step="any"><span style="margin-left: 5px;"> yrs</span><span id="age-warning"
               style="color: red; margin-left: 10px; display: none;">Value outside normal range, age under 18?</span>
           </div>
         </div>
@@ -85,26 +85,26 @@
         </div>
       </div>
 
-      <div class="input-question"><label>Dialysis time:<sup style="color: red;">*</sup></label><br>
-        <div style="display: flex; align-items: center; flex-wrap: wrap;"><input type="number" id="time" class="numeric-input" required><span style="margin-left: 5px;"> min</span></div>
+      <div class="input-question"><label>Dialysis time:</label><br>
+        <div style="display: flex; align-items: center; flex-wrap: wrap;"><input type="number" id="time" class="numeric-input" step="any" required><span style="margin-left: 5px;"> min</span></div>
       </div>
-      <div class="input-question"><label>Weekly UF:<sup style="color: red;">*</sup></label><br>
-        <div style="display: flex; align-items: center; flex-wrap: wrap;"><input type="number" id="weeklyuf" class="numeric-input" required><span style="margin-left: 5px;"> L/wk</span></div>
+      <div class="input-question"><label>Weekly UF:</label><br>
+        <div style="display: flex; align-items: center; flex-wrap: wrap;"><input type="number" id="weeklyuf" class="numeric-input" step="any" required><span style="margin-left: 5px;"> L/wk</span></div>
       </div>
-      <div class="input-question"><label>Kru:<sup style="color: red;">*</sup></label><br>
+      <div class="input-question"><label>Kru:</label><br>
         <div style="display: flex; align-items: center; flex-wrap: wrap;"><input type="number" id="kru" class="numeric-input" step="any" required><span style="margin-left: 5px;"> mL/min</span>
         </div>
       </div>
-      <div class="input-question"><label>Current spKt/V:<sup style="color: red;">*</sup></label><br>
+      <div class="input-question"><label>Current spKt/V:</label><br>
         <div><input type="number" id="spKtV_current" class="numeric-input" step="any" min="0" required>
         </div>
       </div>
-      <div class="input-question"><label>Target stdKt/V, default is 2.3:<sup style="color: red;">*</sup></label><br>
+      <div class="input-question"><label>Target stdKt/V, default is 2.3:</label><br>
         <div><input type="number" id="stdKtV_target" class="numeric-input" value="2.3" step="any" min="0" required>
         </div>
       </div>
       <div class="input-question">
-        <label>Pre-treatment PUN when spKt/V was obtained:<sup style="color: red;">*</sup></label><br>
+        <label>Pre-treatment PUN when spKt/V was obtained:</label><br>
         <div style="display: flex; align-items: center; gap: 0.5rem;">
           <div class="radio-group">
             <label><input type="radio" name="pun-unit" value="M" checked> M</label>
