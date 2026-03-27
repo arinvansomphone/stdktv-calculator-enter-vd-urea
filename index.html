@@ -30,14 +30,14 @@
 
   <section class="hero">
     <h1>stdKt/V Calculator, Enter Vd Urea</h1>
-    <p class="grey">Questions or concerns with the interface? Contact <a
+    <p class="grey">Based on data obtained with a current 3x weekly hemodialysis prescription, the program estimates dialysis session times to achieve a specified stdKt/V and presents modeled weekly PUN profiles for these session times. The program is not applicable to hemodiafiltration. Questions or concerns with the interface? Contact <a
         href="mailto:twmeyer@stanford.edu">twmeyer@stanford.edu</a>.</p>
   </section>
 
   <div class="box-container">
     <!-- ========= PARAMETERS + SUBMIT ======================================= -->
     <form id="dialysisForm" class="box parameters-box">
-      <h2>Parameters for Current 3x per Week Dialysis</h2>
+      <h2>Parameters for Current 3x per Week Hemodialysis</h2>
 
       <div class="input-question">
         <label for="ureaDistribution">Enter your value for urea volume of distribution:</label><br>
@@ -116,7 +116,10 @@
       </div>
 
       <!-- SUBMIT -->
-      <button id="calculate" type="submit">Calculate&nbsp;&amp;&nbsp;Plot</button>
+      <div class="submit-row">
+        <button id="calculate" type="submit">Calculate&nbsp;&amp;&nbsp;Plot</button>
+        <span id="inputMissingMessage" class="input-missing-message">Input is missing</span>
+      </div>
     </form>
 
     <div class="right-column-wrapper">
@@ -139,7 +142,7 @@
         </div>
 
         <div class="output-column">
-          <h3>New 3x per Week Dialysis:</h3>
+          <h3>3x per Week Dialysis to Achieve Target stdKt/V:</h3>
           <p><b>Time required:</b> <span id="timeOutputThrice"></span></p>
           <p><b>Ultrafiltration rate:</b> <span id="UF_RateThrice"></span></p>
           <p><b>New spKt/V:</b> <span id="newspKtVThrice"></span></p>
@@ -148,7 +151,7 @@
         </div>
 
         <div class="output-column">
-          <h3>2x per Week Dialysis:</h3>
+          <h3>2x per Week Dialysis to Achieve Target stdKt/V:</h3>
           <p><b>Time required:</b> <span id="timeOutputTwice"></span></p>
           <p><b>Ultrafiltration rate:</b> <span id="UF_RateTwice"></span></p>
           <p><b>New spKt/V:</b> <span id="newspKtVTwice"></span></p>
@@ -157,6 +160,7 @@
         </div>
 
       </div>
+      <p class="grey">Weekly UF: total ultrafiltration volume per week; APC: average peak concentration; TAC: time-averaged concentration</p>
     </div>
   </div>
 

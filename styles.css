@@ -239,7 +239,21 @@ button[type="submit"]:focus-visible {
 
 button[type="submit"]:disabled {
   opacity: 0.6;
-  cursor: not-allowed;
+  cursor: default;
+}
+
+.submit-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.input-missing-message {
+  margin-top: var(--space-4);
+  color: #d32f2f;
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: none;
 }
 
 /* text-link "buttons" that shouldn't look like links */
